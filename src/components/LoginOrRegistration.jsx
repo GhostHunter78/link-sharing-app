@@ -1,6 +1,7 @@
 import React from "react";
 import GeneralInput from "./GeneralInput";
 import BlueButton from "./BlueButton";
+import { Link } from "react-router-dom";
 
 function LoginOrRegistration({
   pageName,
@@ -40,12 +41,12 @@ function LoginOrRegistration({
       <p className="text-center text-[16px] text-lightGray leading-normal mt-6 mx-auto">
         {accountOrNot}
       </p>
-      <a
-        href={linkPath}
+      <Link
+        to={linkPath}
         className="text-center text-[16px] text-blueBtn leading-normal mx-auto"
       >
         {createOrLogin}
-      </a>
+      </Link>
     </>
   );
 }

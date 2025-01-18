@@ -17,3 +17,13 @@ body {
   background-color: #fafafa;
   overflow-x: hidden;
 }
+
+.menu-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out; /* Adjust timing and easing as needed */
+}
+
+.menu-container.open {
+  max-height: 680px; /* Set to a value greater than the content's maximum height */
+}
