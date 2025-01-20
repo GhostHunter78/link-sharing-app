@@ -8,7 +8,6 @@ import { FaLink } from "react-icons/fa6";
 
 function Home() {
   const [linksArray, setLinksArray] = useState([]);
-  const [activePlatform, setActivePlatform] = useState("GitHub");
 
   const addNewLink = () => {
     setLinksArray([
@@ -139,7 +138,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/github-icon.svg" alt="github-icon" />
-                      <p className="text-[16px] text-lightGray">GitHub</p>
+                      <p
+                        style={
+                          link.platformName === "GitHub"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px]"
+                      >
+                        GitHub
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -156,7 +164,14 @@ function Home() {
                         src="/icons/frontend-mentor-icon.svg"
                         alt="frontend-mentor-icon"
                       />
-                      <p className="text-[16px] text-lightGray">
+                      <p
+                        style={
+                          link.platformName === "Frontend Mentor"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
                         Frontend Mentor
                       </p>
                     </div>
@@ -172,7 +187,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/twitter-icon.svg" alt="twitter-icon" />
-                      <p className="text-[16px] text-lightGray">Twitter</p>
+                      <p
+                        style={
+                          link.platformName === "Twitter"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Twitter
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -186,7 +210,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/linkedin-icon.svg" alt="linkedin-icon" />
-                      <p className="text-[16px] text-lightGray">Linkedin</p>
+                      <p
+                        style={
+                          link.platformName === "Linkedin"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Linkedin
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -200,7 +233,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/youtube-icon.svg" alt="youtube-icon" />
-                      <p className="text-[16px] text-lightGray">Youtube</p>
+                      <p
+                        style={
+                          link.platformName === "Youtube"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Youtube
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -214,7 +256,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/facebook-icon.svg" alt="facebook-icon" />
-                      <p className="text-[16px] text-lightGray">Facebook</p>
+                      <p
+                        style={
+                          link.platformName === "Facebook"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Facebook
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -231,7 +282,16 @@ function Home() {
                         src="/icons/instagram-icon.svg"
                         alt="instagram-icon"
                       />
-                      <p className="text-[16px] text-lightGray">Instagram</p>
+                      <p
+                        style={
+                          link.platformName === "Instagram"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Instagram
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -245,7 +305,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/twitch-icon.svg" alt="twitch-icon" />
-                      <p className="text-[16px] text-lightGray">Twitch</p>
+                      <p
+                        style={
+                          link.platformName === "Twitch"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Twitch
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -259,7 +328,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/devto-icon.svg" alt="devto-icon" />
-                      <p className="text-[16px] text-lightGray">Dev.to</p>
+                      <p
+                        style={
+                          link.platformName === "Dev.to"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Dev.to
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -273,7 +351,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/codewars-icon.svg" alt="codewars-icon" />
-                      <p className="text-[16px] text-lightGray">Codewars</p>
+                      <p
+                        style={
+                          link.platformName === "Codewars"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Codewars
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -287,7 +374,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/codepen-icon.svg" alt="codepen-icon" />
-                      <p className="text-[16px] text-lightGray">Codepen</p>
+                      <p
+                        style={
+                          link.platformName === "Codepen"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Codepen
+                      </p>
                     </div>
                     <div
                       style={{ borderBottom: "solid 1px #d9d9d9" }}
@@ -304,7 +400,14 @@ function Home() {
                         src="/icons/freecodecamp-icon.svg"
                         alt="freecodecamp-icon"
                       />
-                      <p className="text-[16px] text-lightGray">
+                      <p
+                        style={
+                          link.platformName === "Free Code Camp"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
                         Free Code Camp
                       </p>
                     </div>
@@ -320,7 +423,16 @@ function Home() {
                       }
                     >
                       <img src="/icons/gitlab-icon.svg" alt="gitlab-icon" />
-                      <p className="text-[16px] text-lightGray">Gitlab</p>
+                      <p
+                        style={
+                          link.platformName === "Gitlab"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray"
+                      >
+                        Gitlab
+                      </p>
                     </div>
                     <div
                       className="w-full pt-3 flex items-center gap-3"
@@ -336,7 +448,14 @@ function Home() {
                         src="/icons/stack-overflow-icon.svg"
                         alt="stack-overflow-icon"
                       />
-                      <p className="text-[16px] text-lightGray cursor-pointer">
+                      <p
+                        style={
+                          link.platformName === "Stack Overflow"
+                            ? { color: "#633cff" }
+                            : { color: "#737373" }
+                        }
+                        className="text-[16px] text-lightGray cursor-pointer"
+                      >
                         Stack Overflow
                       </p>
                     </div>
