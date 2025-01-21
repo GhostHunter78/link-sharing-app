@@ -11,6 +11,12 @@ function Home() {
 
   // console.log(linksArray);
 
+  const stringifiedLinks = JSON.stringify(linksArray);
+
+  const saveLinks = () => {
+    localStorage.setItem("links", stringifiedLinks);
+  };
+
   const platforms = [
     { name: "GitHub", icon: "/icons/github-icon.svg" },
     { name: "Frontend Mentor", icon: "/icons/frontend-mentor-icon.svg" },
@@ -224,7 +230,7 @@ function Home() {
           }}
           className="w-full bg-white p-4"
         >
-          <BlueButton btnText={"Save"} />
+          <BlueButton btnText={"Save"} onClick={() => saveLinks()} />
         </div>
       </div>
     </div>
