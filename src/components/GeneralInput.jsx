@@ -9,8 +9,11 @@ function GeneralInput({ inputIcon, type, inputPlaceholder, value, onChange }) {
         value={value}
         onChange={onChange}
         placeholder={inputPlaceholder}
-        style={{ border: "solid 1px #d9d9d9" }}
-        className="w-full py-3 pr-4 pl-[44px] rounded-lg text-[16px] text-blackText focus:shadow-lg focus:border-[solid 1px #633cff] focus:bg-[#fff]"
+        style={
+          ({ border: "solid 1px #d9d9d9" },
+          inputIcon ? { paddingLeft: "44px" } : { paddingLeft: "16px" })
+        }
+        className="w-full py-3 pr-4 rounded-lg text-[16px] text-blackText focus:shadow-lg focus:border-[solid 1px #633cff] focus:bg-[#fff]"
       ></input>
     </div>
   );
