@@ -5,6 +5,27 @@ import { TbPhoto } from "react-icons/tb";
 import GeneralInput from "../components/GeneralInput";
 
 function Profile() {
+  const validateImage = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+
+    img.onload = () => {
+      if (img.width === 1024 && img.height === 1024) {
+        console.log("Image is valid!");
+      } else {
+        console.error("Invalid image dimensions!");
+        alert("The uploaded image must be 1024x1024 pixels.");
+        event.target.value = "";
+      }
+
+      URL.revokeObjectURL(objectUrl);
+    };
+
+    img.src = objectUrl;
+  };
   return (
     <div>
       <Header />
@@ -22,6 +43,14 @@ function Profile() {
           <p className="text-[16px] text-lightGray leading-normal text-left mb-[40px]">
             Add your details to create a personal touch to your profile.
           </p>
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpg"
+            className="hidden"
+            onChange={(event) => validateImage(event)}
+          />
           <div className="w-full p-5 rounded-xl bg-[#fafafa] mb-6">
             <p className="text-[16px] text-lightGray leading-normal mb-4">
               Profile Picture
