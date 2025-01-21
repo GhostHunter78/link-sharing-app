@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import BlueButton from "../components/BlueButton";
 import { SlArrowDown } from "react-icons/sl";
@@ -8,14 +8,6 @@ import { FaLink } from "react-icons/fa6";
 
 function Home() {
   const [linksArray, setLinksArray] = useState([]);
-
-  // console.log(linksArray);
-
-  const stringifiedLinks = JSON.stringify(linksArray);
-
-  const saveLinks = () => {
-    localStorage.setItem("links", stringifiedLinks);
-  };
 
   const platforms = [
     { name: "GitHub", icon: "/icons/github-icon.svg" },
@@ -33,6 +25,19 @@ function Home() {
     { name: "Gitlab", icon: "/icons/gitlab-icon.svg" },
     { name: "Stack Overflow", icon: "/icons/stack-overflow-icon.svg" },
   ];
+
+  const stringifiedLinks = JSON.stringify(linksArray);
+
+  const saveLinks = () => {
+    localStorage.setItem("links", stringifiedLinks);
+  };
+
+  useEffect(() => {
+    const savedLinks = localStorage.getItem("links");
+    if (savedLinks) {
+      setLinksArray(JSON.parse(savedLinks));
+    }
+  }, []);
 
   const addNewLink = () => {
     setLinksArray([
@@ -74,6 +79,12 @@ function Home() {
       i === index ? { ...link, platformPath: platformLink } : link
     );
     setLinksArray(updatedLinks);
+  };
+
+  const handleRemovingLink = (index) => {
+    const updatedLinks = linksArray.filter((_, i) => i !== index);
+    setLinksArray(updatedLinks);
+    localStorage.setItem("links", JSON.stringify(updatedLinks));
   };
 
   return (
@@ -125,9 +136,7 @@ function Home() {
                   - <strong>Link #{index + 1}</strong>
                 </p>
                 <p
-                  onClick={() =>
-                    setLinksArray(linksArray.filter((_, i) => i !== index))
-                  }
+                  onClick={() => handleRemovingLink(index)}
                   className="text-[16px] text-lightGray cursor-pointer"
                 >
                   Remove
