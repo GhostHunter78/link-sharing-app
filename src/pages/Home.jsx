@@ -9,6 +9,8 @@ import { FaLink } from "react-icons/fa6";
 function Home() {
   const [linksArray, setLinksArray] = useState([]);
 
+  // console.log(linksArray);
+
   const platforms = [
     { name: "GitHub", icon: "/icons/github-icon.svg" },
     { name: "Frontend Mentor", icon: "/icons/frontend-mentor-icon.svg" },
@@ -50,7 +52,12 @@ function Home() {
   const handleSelectingPlatform = (index, iconPath, platformTitle) => {
     const updatedLinks = linksArray.map((link, i) =>
       i === index
-        ? { ...link, linkIcon: iconPath, platformName: platformTitle }
+        ? {
+            ...link,
+            linkIcon: iconPath,
+            platformName: platformTitle,
+            open: false,
+          }
         : link
     );
     setLinksArray(updatedLinks);
@@ -162,13 +169,13 @@ function Home() {
                           paddingBottom:
                             subIndex !== platforms.length - 1 ? "12px" : "0",
                         }}
-                        onClick={() =>
+                        onClick={() => {
                           handleSelectingPlatform(
                             index,
                             platform.icon,
                             platform.name
-                          )
-                        }
+                          );
+                        }}
                       >
                         <img
                           src={platform.icon}
@@ -178,7 +185,7 @@ function Home() {
                           className="text-[16px]"
                           style={{
                             color:
-                              link.platformName === platform.name
+                              linksArray[index]?.platformName === platform.name
                                 ? "#633cff"
                                 : "#737373",
                           }}
