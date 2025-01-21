@@ -9,6 +9,23 @@ import { FaLink } from "react-icons/fa6";
 function Home() {
   const [linksArray, setLinksArray] = useState([]);
 
+  const platforms = [
+    { name: "GitHub", icon: "/icons/github-icon.svg" },
+    { name: "Frontend Mentor", icon: "/icons/frontend-mentor-icon.svg" },
+    { name: "Twitter", icon: "/icons/twitter-icon.svg" },
+    { name: "Linkedin", icon: "/icons/linkedin-icon.svg" },
+    { name: "Youtube", icon: "/icons/youtube-icon.svg" },
+    { name: "Facebook", icon: "/icons/facebook-icon.svg" },
+    { name: "Instagram", icon: "/icons/instagram-icon.svg" },
+    { name: "Twitch", icon: "/icons/twitch-icon.svg" },
+    { name: "Dev.to", icon: "/icons/devto-icon.svg" },
+    { name: "Codewars", icon: "/icons/codewars-icon.svg" },
+    { name: "Codepen", icon: "/icons/codepen-icon.svg" },
+    { name: "Free Code Camp", icon: "/icons/freecodecamp-icon.svg" },
+    { name: "Gitlab", icon: "/icons/gitlab-icon.svg" },
+    { name: "Stack Overflow", icon: "/icons/stack-overflow-icon.svg" },
+  ];
+
   const addNewLink = () => {
     setLinksArray([
       ...linksArray,
@@ -18,6 +35,7 @@ function Home() {
         open: false,
         linkIcon: "/icons/github-icon.svg",
         platformName: "GitHub",
+        platformPath: "",
       },
     ]);
   };
@@ -34,6 +52,13 @@ function Home() {
       i === index
         ? { ...link, linkIcon: iconPath, platformName: platformTitle }
         : link
+    );
+    setLinksArray(updatedLinks);
+  };
+
+  const handleSelectingPlatformLink = (index, platformLink) => {
+    const updatedLinks = linksArray.map((link, i) =>
+      i === index ? { ...link, platformPath: platformLink } : link
     );
     setLinksArray(updatedLinks);
   };
@@ -109,9 +134,7 @@ function Home() {
                       src={link.linkIcon}
                       alt={`${link.platformName} icon`}
                     />
-                    <p className="text-[16px] text-lightGray">
-                      {link.platformName}
-                    </p>
+                    <p className="text-[16px] ">{link.platformName}</p>
                   </div>
                   {link.open ? (
                     <SlArrowUp color="blue" />
@@ -126,339 +149,44 @@ function Home() {
                       link.open ? "open" : ""
                     }`}
                   >
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full pb-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/github-icon.svg",
-                          "GitHub"
-                        )
-                      }
-                    >
-                      <img src="/icons/github-icon.svg" alt="github-icon" />
-                      <p
-                        style={
-                          link.platformName === "GitHub"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
+                    {platforms.map((platform, subIndex) => (
+                      <div
+                        key={subIndex}
+                        className="dropdown-item w-full flex items-center gap-3 cursor-pointer"
+                        style={{
+                          borderBottom:
+                            subIndex !== platforms.length - 1
+                              ? "solid 1px #d9d9d9"
+                              : "none",
+                          paddingTop: subIndex !== 0 ? "12px" : "0",
+                          paddingBottom:
+                            subIndex !== platforms.length - 1 ? "12px" : "0",
+                        }}
+                        onClick={() =>
+                          handleSelectingPlatform(
+                            index,
+                            platform.icon,
+                            platform.name
+                          )
                         }
-                        className="text-[16px]"
                       >
-                        GitHub
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/frontend-mentor-icon.svg",
-                          "Frontend Mentor"
-                        )
-                      }
-                    >
-                      <img
-                        src="/icons/frontend-mentor-icon.svg"
-                        alt="frontend-mentor-icon"
-                      />
-                      <p
-                        style={
-                          link.platformName === "Frontend Mentor"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Frontend Mentor
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/twitter-icon.svg",
-                          "Twitter"
-                        )
-                      }
-                    >
-                      <img src="/icons/twitter-icon.svg" alt="twitter-icon" />
-                      <p
-                        style={
-                          link.platformName === "Twitter"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Twitter
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/linkedin-icon.svg",
-                          "Linkedin"
-                        )
-                      }
-                    >
-                      <img src="/icons/linkedin-icon.svg" alt="linkedin-icon" />
-                      <p
-                        style={
-                          link.platformName === "Linkedin"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Linkedin
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/youtube-icon.svg",
-                          "Youtube"
-                        )
-                      }
-                    >
-                      <img src="/icons/youtube-icon.svg" alt="youtube-icon" />
-                      <p
-                        style={
-                          link.platformName === "Youtube"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Youtube
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/facebook-icon.svg",
-                          "Facebook"
-                        )
-                      }
-                    >
-                      <img src="/icons/facebook-icon.svg" alt="facebook-icon" />
-                      <p
-                        style={
-                          link.platformName === "Facebook"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Facebook
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/instagram-icon.svg",
-                          "Instagram"
-                        )
-                      }
-                    >
-                      <img
-                        src="/icons/instagram-icon.svg"
-                        alt="instagram-icon"
-                      />
-                      <p
-                        style={
-                          link.platformName === "Instagram"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Instagram
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/twitch-icon.svg",
-                          "Twitch"
-                        )
-                      }
-                    >
-                      <img src="/icons/twitch-icon.svg" alt="twitch-icon" />
-                      <p
-                        style={
-                          link.platformName === "Twitch"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Twitch
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/devto-icon.svg",
-                          "Dev.to"
-                        )
-                      }
-                    >
-                      <img src="/icons/devto-icon.svg" alt="devto-icon" />
-                      <p
-                        style={
-                          link.platformName === "Dev.to"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Dev.to
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/codewars-icon.svg",
-                          "Codewars"
-                        )
-                      }
-                    >
-                      <img src="/icons/codewars-icon.svg" alt="codewars-icon" />
-                      <p
-                        style={
-                          link.platformName === "Codewars"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Codewars
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/codepen-icon.svg",
-                          "Codepen"
-                        )
-                      }
-                    >
-                      <img src="/icons/codepen-icon.svg" alt="codepen-icon" />
-                      <p
-                        style={
-                          link.platformName === "Codepen"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Codepen
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/freecodecamp-icon.svg",
-                          "Free Code Camp"
-                        )
-                      }
-                    >
-                      <img
-                        src="/icons/freecodecamp-icon.svg"
-                        alt="freecodecamp-icon"
-                      />
-                      <p
-                        style={
-                          link.platformName === "Free Code Camp"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Free Code Camp
-                      </p>
-                    </div>
-                    <div
-                      style={{ borderBottom: "solid 1px #d9d9d9" }}
-                      className="w-full py-3 flex items-center gap-3 cursor-pointer"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/gitlab-icon.svg",
-                          "Gitlab"
-                        )
-                      }
-                    >
-                      <img src="/icons/gitlab-icon.svg" alt="gitlab-icon" />
-                      <p
-                        style={
-                          link.platformName === "Gitlab"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray"
-                      >
-                        Gitlab
-                      </p>
-                    </div>
-                    <div
-                      className="w-full pt-3 flex items-center gap-3"
-                      onClick={() =>
-                        handleSelectingPlatform(
-                          index,
-                          "/icons/stack-overflow-icon.svg",
-                          "Stack Overflow"
-                        )
-                      }
-                    >
-                      <img
-                        src="/icons/stack-overflow-icon.svg"
-                        alt="stack-overflow-icon"
-                      />
-                      <p
-                        style={
-                          link.platformName === "Stack Overflow"
-                            ? { color: "#633cff" }
-                            : { color: "#737373" }
-                        }
-                        className="text-[16px] text-lightGray cursor-pointer"
-                      >
-                        Stack Overflow
-                      </p>
-                    </div>
+                        <img
+                          src={platform.icon}
+                          alt={`${platform.name} icon`}
+                        />
+                        <p
+                          className="text-[16px]"
+                          style={{
+                            color:
+                              link.platformName === platform.name
+                                ? "#633cff"
+                                : "#737373",
+                          }}
+                        >
+                          {platform.name}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
@@ -469,8 +197,12 @@ function Home() {
                 </label>
                 <GeneralInput
                   type={"text"}
+                  value={link.platformPath}
                   inputIcon={<FaLink color="#737373" />}
                   inputPlaceholder={"e.g. https://www.github.com/johnappleseed"}
+                  onChange={(event) =>
+                    handleSelectingPlatformLink(index, event.target.value)
+                  }
                 />
               </div>
             </div>

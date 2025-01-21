@@ -21,9 +21,9 @@ body {
 .menu-container {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out; /* Adjust timing and easing as needed */
+  transition: max-height 0.5s ease-out;
 }
 
 .menu-container.open {
-  max-height: 680px; /* Set to a value greater than the content's maximum height */
+  max-height: 694px;
 }
