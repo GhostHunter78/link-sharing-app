@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import BlueButton from "../components/BlueButton";
 import { TbPhoto } from "react-icons/tb";
 import GeneralInput from "../components/GeneralInput";
 
 function Profile() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const saveFirstNameValue = () => {
+    localStorage.setItem("firstName", JSON.stringify(firstName));
+  };
+
+  const saveLastNameValue = () => {
+    localStorage.setItem("lastName", JSON.stringify(lastName));
+  };
+
+  useEffect(() => {
+    const getfirstName = localStorage.getItem("firstName");
+    const getLastName = localStorage.getItem("lastName");
+    if (getfirstName) {
+      setFirstName(JSON.parse(getfirstName));
+    }
+
+    if (getLastName) {
+      setFirstName(JSON.parse(getLastName));
+    }
+  }, []);
+
   const [backgroundImage, setBackgroundImage] = useState(null);
 
   const triggerFileInput = () => {
@@ -33,6 +56,7 @@ function Profile() {
 
     img.src = objectUrl;
   };
+
   return (
     <div>
       <Header />
@@ -102,6 +126,8 @@ function Profile() {
               <GeneralInput
                 type={"text"}
                 inputPlaceholder={"Enter your first name"}
+                value={firstName}
+                onChange={(event) => setFirstName(event.target.value)}
               />
             </div>
             <div className="w-full flex flex-col items-start gap-y-1">
@@ -109,6 +135,11 @@ function Profile() {
               <GeneralInput
                 type={"text"}
                 inputPlaceholder={"Enter your last name"}
+                value={lastName}
+                onChange={(event) => {
+                  setLastName(event.target.value),
+                    console.log(event.target.value);
+                }}
               />
             </div>
             <div className="w-full flex flex-col items-start gap-y-1">
@@ -129,7 +160,12 @@ function Profile() {
           }}
           className="w-full bg-white p-4"
         >
-          <BlueButton btnText={"Save"} onClick={() => saveLinks()} />
+          <BlueButton
+            btnText={"Save"}
+            onClick={() => {
+              saveFirstNameValue(), saveLastNameValue();
+            }}
+          />
         </div>
       </div>
     </div>
