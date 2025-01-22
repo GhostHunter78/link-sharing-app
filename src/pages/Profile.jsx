@@ -24,7 +24,7 @@ function Profile() {
     }
 
     if (getLastName) {
-      setFirstName(JSON.parse(getLastName));
+      setLastName(JSON.parse(getLastName));
     }
   }, []);
 
@@ -137,8 +137,7 @@ function Profile() {
                 inputPlaceholder={"Enter your last name"}
                 value={lastName}
                 onChange={(event) => {
-                  setLastName(event.target.value),
-                    console.log(event.target.value);
+                  setLastName(event.target.value);
                 }}
               />
             </div>
