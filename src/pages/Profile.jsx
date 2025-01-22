@@ -7,6 +7,7 @@ import GeneralInput from "../components/GeneralInput";
 function Profile() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState(null);
 
   const saveFirstNameValue = () => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -16,9 +17,14 @@ function Profile() {
     localStorage.setItem("lastName", JSON.stringify(lastName));
   };
 
+  const saveUploadedAvatar = () => {
+    localStorage.setItem("uploadedAvatar", JSON.stringify(backgroundImage));
+  };
+
   useEffect(() => {
     const getfirstName = localStorage.getItem("firstName");
     const getLastName = localStorage.getItem("lastName");
+    const getUploadedAvatar = localStorage.getItem("uploadedAvatar");
     if (getfirstName) {
       setFirstName(JSON.parse(getfirstName));
     }
@@ -26,9 +32,11 @@ function Profile() {
     if (getLastName) {
       setLastName(JSON.parse(getLastName));
     }
-  }, []);
 
-  const [backgroundImage, setBackgroundImage] = useState(null);
+    if (getUploadedAvatar) {
+      setBackgroundImage(JSON.parse(getUploadedAvatar));
+    }
+  }, []);
 
   const triggerFileInput = () => {
     document.getElementById("avatar").click();
@@ -39,22 +47,31 @@ function Profile() {
     if (!file) return;
 
     const img = new Image();
-    const objectUrl = URL.createObjectURL(file);
+    const reader = new FileReader();
 
-    img.onload = () => {
-      if (img.width <= 1024 && img.height <= 1024) {
-        console.log("Valid image dimensions!");
-        setBackgroundImage(objectUrl);
-      } else {
-        console.error("Invalid image dimensions!");
-        alert("Image must be 1024x1024px or smaller.");
-        event.target.value = "";
-      }
+    reader.onload = () => {
+      img.onload = () => {
+        if (img.width <= 1024 && img.height <= 1024) {
+          console.log("Valid image dimensions!");
+          const base64String = reader.result;
+          setBackgroundImage(base64String);
+          localStorage.setItem("uploadedAvatar", base64String);
+        } else {
+          console.error("Invalid image dimensions!");
+          alert("Image must be 1024x1024px or smaller.");
+          event.target.value = "";
+        }
+      };
 
-      URL.revokeObjectURL(objectUrl);
+      img.src = reader.result;
     };
 
-    img.src = objectUrl;
+    reader.onerror = () => {
+      console.error("Failed to read the file.");
+      alert("There was an error reading the file.");
+    };
+
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -162,7 +179,7 @@ function Profile() {
           <BlueButton
             btnText={"Save"}
             onClick={() => {
-              saveFirstNameValue(), saveLastNameValue();
+              saveFirstNameValue(), saveLastNameValue(), saveUploadedAvatar();
             }}
           />
         </div>
