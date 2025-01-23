@@ -39,12 +39,14 @@ function Header() {
           </div>
         </Link>
       </div>
-      <div
-        style={{ border: "solid 1px #633cff" }}
-        className="py-[11px] px-4 rounded-lg"
-      >
-        <IoEyeOutline color="#633cff" />
-      </div>
+      <Link to={"/preview"}>
+        <div
+          style={{ border: "solid 1px #633cff" }}
+          className="py-[11px] px-4 rounded-lg"
+        >
+          <IoEyeOutline color="#633cff" />
+        </div>
+      </Link>
     </div>
   );
 }
