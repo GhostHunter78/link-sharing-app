@@ -37,7 +37,9 @@ function LoginOrRegistration({
           </div>
         ))}
       </form>
-      <BlueButton btnText={btnText} />
+      <Link to={"/home"} className="w-full">
+        <BlueButton btnText={btnText} />
+      </Link>
       <p className="text-center text-[16px] text-lightGray leading-normal mt-6 mx-auto">
         {accountOrNot}
       </p>
